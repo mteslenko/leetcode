@@ -55,7 +55,7 @@ public class MergeKSortedListsHeapTest {
 
   @Test
   public void mergeKLists() {
-    ListNode result = MergeKSortedListsHeap.mergeKLists(input);
+    ListNode result = new MergeKSortedListsHeap().mergeKLists(input);
     assertThat(ListNodeUtils.toList(result), is(ListNodeUtils.toList(expected)));
   }
 

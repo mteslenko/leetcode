@@ -55,7 +55,7 @@ public class MergeKSortedListsDivideTest {
 
   @Test
   public void mergeKLists() {
-    ListNode result = MergeKSortedListsDivide.mergeKLists(input);
+    ListNode result = new MergeKSortedListsDivide().mergeKLists(input);
     assertThat(ListNodeUtils.toList(result), is(ListNodeUtils.toList(expected)));
   }
 

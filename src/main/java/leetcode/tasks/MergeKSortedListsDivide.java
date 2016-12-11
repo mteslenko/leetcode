@@ -10,7 +10,7 @@ import java.util.List;
  * @see <a href="https://leetcode.com/problems/merge-k-sorted-lists/">Leetcode</a>
  */
 class MergeKSortedListsDivide {
-  static ListNode mergeKLists(ListNode[] lists) {
+  ListNode mergeKLists(ListNode[] lists) {
     if (lists == null || lists.length == 0) {
       return null;
     }
