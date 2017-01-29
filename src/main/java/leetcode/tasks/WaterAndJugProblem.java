@@ -26,7 +26,7 @@ class WaterAndJugProblem {
         continue;
       }
       if (current.jug1 == z || current.jug2 == z || current.jug1 + current.jug2 == z) {
-        System.out.println(path);
+//        System.out.println(path);
         return true;
       }
       visited.add(current);
