@@ -1,7 +1,12 @@
 package leetcode.tasks;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * Merge k sorted linked lists and return it as one sorted list.
@@ -9,8 +14,28 @@ import java.util.List;
  *
  * @see <a href="https://leetcode.com/problems/merge-k-sorted-lists/">Leetcode</a>
  */
-class MergeKSortedListsDivide {
-  ListNode mergeKLists(ListNode[] lists) {
+class MergeKSortedLists {
+  ListNode mergeKLists_heap(ListNode[] lists) {
+    if (lists == null || lists.length == 0) {
+      return null;
+    }
+    Queue<ListNode> heap = new PriorityQueue<>(Comparator.comparingInt(o -> o.val));
+    Arrays.stream(lists).filter(list -> !Objects.isNull(list)).forEach(heap::add);
+    ListNode head = new ListNode(0);
+    ListNode p = head;
+    while (heap.peek() != null) {
+      ListNode list = heap.poll();
+      p.next = list;
+      p = p.next;
+      if (list.next != null) {
+        heap.offer(list.next);
+      }
+    }
+    return head.next;
+  }
+
+
+  ListNode mergeKLists_divide(ListNode[] lists) {
     if (lists == null || lists.length == 0) {
       return null;
     }

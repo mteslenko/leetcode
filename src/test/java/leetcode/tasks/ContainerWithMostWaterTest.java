@@ -13,34 +13,28 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
-public class SearchInRotatedSortedArrayTest {
+public class ContainerWithMostWaterTest {
   @Parameters
   public static Collection<Object[]> data() {
     return Arrays.asList(
-        new Object[]{new int[]{1, 3}, 3, 1},
-        new Object[]{new int[]{4, 5, 6, 7, 0, 1, 2}, 1, 5},
-        new Object[]{new int[]{4, 5, 6, 7, 0, 1, 2}, 0, 4},
-        new Object[]{new int[]{4, 5, 6, 7, 0, 1, 2}, 8, -1},
-        new Object[]{new int[]{21, 5, 8}, 8, 2},
-        new Object[]{new int[]{5, 3, 4}, 2, -1});
+        new Object[]{new int[]{1, 2, 4, 3}, 4},
+        new Object[]{new int[]{3, 5, 8}, 6},
+        new Object[]{new int[]{1, 1}, 1},
+        new Object[]{new int[]{1, 2, 2}, 2});
   }
 
   @SuppressWarnings("WeakerAccess")
   @Parameter
-  public int[] nums;
+  public int[] candidates;
 
   @SuppressWarnings("WeakerAccess")
   @Parameter(1)
-  public int target;
-
-  @SuppressWarnings("WeakerAccess")
-  @Parameter(2)
   public int expected;
 
 
   @Test
-  public void ladderLength() {
-    int result = new SearchInRotatedSortedArray().search(nums, target);
+  public void maxArea() {
+    int result = new ContainerWithMostWater().maxArea(candidates);
     assertThat(result, is(expected));
   }
 

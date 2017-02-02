@@ -3,6 +3,8 @@ package leetcode.tasks;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameter;
+import org.junit.runners.Parameterized.Parameters;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -11,8 +13,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
-public class UniqueBinarySearchTreesArrayTest {
-  @Parameterized.Parameters
+public class UniqueBinarySearchTreesTest {
+  @Parameters
   public static Collection<Object[]> data() {
     return Arrays.asList(
         new Object[]{1, 1},
@@ -24,17 +26,17 @@ public class UniqueBinarySearchTreesArrayTest {
   }
 
   @SuppressWarnings("WeakerAccess")
-  @Parameterized.Parameter
+  @Parameter
   public Integer input;
 
   @SuppressWarnings("WeakerAccess")
-  @Parameterized.Parameter(1)
+  @Parameter(1)
   public Integer expected;
 
   @Test
-  public void numTrees() throws Exception {
-    Integer result = new UniqueBinarySearchTreesArray().numTrees(input);
-    assertThat(result, is(expected));
+  public void numTrees() {
+    assertThat(new UniqueBinarySearchTrees().numTrees_bottomUp(input), is(expected));
+    assertThat(new UniqueBinarySearchTrees().numTrees_topDown(input), is(expected));
   }
 
 }

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
  * <b>Format:</b>
  * </p>
  * <p>
- * The graph contains n nodes which are labeled from <code>0</code> to <code>n - 1</code>.
+ * The graph contains n nodes which are labeled from {@code 0} to {@code n - 1}.
  * You will be given the number n and a list of undirected edges (each edge is a pair of labels).
  * </p>
  * <p>
@@ -45,10 +46,10 @@ class MinimumHeightTrees {
     Set<Integer> leaves = adj.entrySet()
         .stream()
         .filter(e -> e.getValue().size() == 1)
-        .map(Map.Entry::getKey)
+        .map(Entry::getKey)
         .collect(Collectors.toSet());
     while (n > 2) {
-      n = n - leaves.size();
+      n -= leaves.size();
       leaves = leaves.stream().map(leaf -> {
         Integer neighbor = adj.get(leaf).iterator().next();
         adj.get(neighbor).remove(leaf);
