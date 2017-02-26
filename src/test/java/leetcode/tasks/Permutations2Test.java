@@ -15,34 +15,38 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
-public class CombinationSumTest {
+public class Permutations2Test {
   @Parameters
   public static Collection<Object[]> data() {
     return Arrays.asList(
         new Object[]{
-            new int[]{1, 2}, 3, Arrays.asList(Arrays.asList(1, 1, 1), Arrays.asList(1, 2))},
+            new int[]{1, 1, 1, 1, 1, 1, 1},
+            Collections.singletonList(Arrays.asList(1, 1, 1, 1, 1, 1, 1))},
         new Object[]{
-            new int[]{2, 3, 6, 7},
-            7,
-            Arrays.asList(Arrays.asList(2, 2, 3), Collections.singletonList(7))});
+            new int[]{1, 2}, Arrays.asList(Arrays.asList(1, 2), Arrays.asList(2, 1))},
+        new Object[]{
+            new int[]{1, 2, 2},
+            Arrays.asList(Arrays.asList(1, 2, 2), Arrays.asList(2, 1, 2), Arrays.asList(2, 2, 1))});
   }
 
   @SuppressWarnings("WeakerAccess")
   @Parameter
-  public int[] candidates;
+  public int[] nums;
 
   @SuppressWarnings("WeakerAccess")
   @Parameter(1)
-  public int target;
-
-  @SuppressWarnings("WeakerAccess")
-  @Parameter(2)
   public List<List<Integer>> expected;
 
 
   @Test
-  public void combinationSum() {
-    List<List<Integer>> result = new CombinationSum().combinationSum(candidates, target);
+  public void permuteUnique() {
+    List<List<Integer>> result = new Permutations2().permuteUnique(nums);
+    assertThat(result, is(expected));
+  }
+
+  @Test
+  public void permuteUniqueNotOptimized() {
+    List<List<Integer>> result = new Permutations2().permuteUniqueNotOptimized(nums);
     assertThat(result, is(expected));
   }
 

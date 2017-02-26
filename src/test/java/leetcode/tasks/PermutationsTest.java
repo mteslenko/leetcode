@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
@@ -38,8 +39,14 @@ public class PermutationsTest {
 
 
   @Test
-  public void maxSubArray() {
-    List<List<Integer>> result = new Permutations().permute(nums);
+  public void permuteInsert() {
+    List<List<Integer>> result = new Permutations().permuteInsert(nums);
+    assertThat(result, containsInAnyOrder(expected.toArray()));
+  }
+
+  @Test
+  public void permutePrefix() {
+    List<List<Integer>> result = new Permutations().permutePrefix(nums);
     assertThat(result, is(expected));
   }
 
