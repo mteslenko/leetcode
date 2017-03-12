@@ -3,6 +3,8 @@ package leetcode.tasks;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameter;
+import org.junit.runners.Parameterized.Parameters;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -14,7 +16,7 @@ import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
 public class MinimumHeightTreesTest {
-  @Parameterized.Parameters
+  @Parameters
   public static Collection<Object[]> data() {
     return Arrays.asList(
         new Object[]{1, new int[0][0], Collections.singletonList(0)},
@@ -23,19 +25,19 @@ public class MinimumHeightTreesTest {
   }
 
   @SuppressWarnings("WeakerAccess")
-  @Parameterized.Parameter
+  @Parameter
   public int n;
 
   @SuppressWarnings("WeakerAccess")
-  @Parameterized.Parameter(1)
+  @Parameter(1)
   public int[][] edges;
 
   @SuppressWarnings("WeakerAccess")
-  @Parameterized.Parameter(2)
+  @Parameter(2)
   public List<Integer> expected;
 
   @Test
-  public void findMinHeightTrees() throws Exception {
+  public void findMinHeightTrees() {
     List<Integer> result = new MinimumHeightTrees().findMinHeightTrees(n, edges);
     assertThat(result, is(expected));
   }
