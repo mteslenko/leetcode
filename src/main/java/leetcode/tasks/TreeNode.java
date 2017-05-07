@@ -2,6 +2,11 @@ package leetcode.tasks;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class TreeNode {
   public int val;
   @Nullable
@@ -18,21 +23,33 @@ public class TreeNode {
       return null;
     }
     TreeNode root = new TreeNode(values[0]);
-    buildTree(root, values, 1);
+    buildTree(Collections.singletonList(root), values, 1);
     return root;
   }
 
-  private static void buildTree(TreeNode root, Integer[] values, int i) {
-    if (i >= values.length) {
-      return;
-    }
+  private static void buildTree(List<TreeNode> roots, Integer[] values, int i) {
+    List<TreeNode> newRoots = new ArrayList<>();
+    for (TreeNode root : roots) {
 
-    root.left = values[i] == null ? null : new TreeNode(values[i]);
-    buildTree(root.left, values, i * 2 + 1);
-    if (i + 1 < values.length) {
-      root.right = values[i + 1] == null ? null : new TreeNode(values[i + 1]);
-      buildTree(root.right, values, (i + 1) * 2 + 1);
+      if (i >= values.length) {
+        return;
+      }
+      Integer nextVal = values[i++];
+      root.left = nextVal == null ? null : new TreeNode(nextVal);
+      if (i >= values.length) {
+        return;
+      }
+      Integer nextRightVal = values[i++];
+      root.right = nextRightVal == null ? null : new TreeNode(nextRightVal);
+
+      if (root.left != null) {
+        newRoots.add(root.left);
+      }
+      if (root.right != null) {
+        newRoots.add(root.right);
+      }
     }
+    buildTree(newRoots, values, i);
   }
 
   @Override
